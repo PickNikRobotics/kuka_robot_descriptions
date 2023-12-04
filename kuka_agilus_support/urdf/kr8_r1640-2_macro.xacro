@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find kuka_resources)/urdf/common_constants.xacro"/>
+  <xacro:include filename="$(find kuka_resources)/urdf/common_materials.xacro"/>
+  <xacro:include filename="$(find kuka_agilus_support)/urdf/kr_agilus_ros2_control.xacro" />
+  <xacro:include filename="$(find kuka_agilus_support)/urdf/kr_agilus_transmission.xacro" />
+
+  <xacro:macro name="kr8_r1640-2_robot" params="prefix client_ip client_port use_fake_hardware">
+    <!-- ros2 control instance -->
+    <xacro:kuka_agilus_ros2_control
+    name="kr8_r1640-2" 
+    prefix="${prefix}"
+    client_ip="${client_ip}"
+    client_port="${client_port}"
+    use_fake_hardware="${use_fake_hardware}" />
+
+    <link name="${prefix}base_link">  
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/base_link.STL" />
+        </geometry>
+        <xacro:material_kuka_pedestal />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/base_link.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="-0.0918228145810307 0.115998004416644 0.409451449420693"
+          rpy="0 0 0" />
+        <mass
+          value="20.6137384978319" />
+        <inertia
+          ixx="0.216074716259972"
+          ixy="-0.00126159161999436"
+          ixz="-0.00697519882677225"
+          iyy="0.274546678735659"
+          iyz="-8.35594907102665E-05"
+          izz="0.303979204601086" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}link_1">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link1.STL" />
+        </geometry>
+        <xacro:material_kuka_orange />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link1.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="0.0632284832510284 0.00929091089013534 0.151469624605647"
+          rpy="0 0 0" />
+        <mass
+          value="16.5877043278261" />
+        <inertia
+          ixx="0.213364303503939"
+          ixy="-0.0012485292563484"
+          ixz="-0.0652741773214894"
+          iyy="0.271565940766349"
+          iyz="-0.00700452845831783"
+          izz="0.280770500243086" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}link_2">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link2.STL" />
+        </geometry>
+        <xacro:material_kuka_orange />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link2.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="0.00139980750670374 -0.171929998547248 0.373062489097034"
+          rpy="0 0 0" />
+        <mass
+          value="8.44497323590119" />
+        <inertia
+          ixx="0.469728507498528"
+          ixy="0.000175006316361185"
+          ixz="0.00647697751319702"
+          iyy="0.47087375592106"
+          iyz="-0.00818478056094589"
+          izz="0.0192201783974145" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}link_3">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link3.STL" />
+        </geometry>
+        <xacro:material_kuka_orange />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link3.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="0.0995114735633207 0.0513738086199301 0.00765800408256889"
+          rpy="0 0 0" />
+        <mass
+          value="8.85888484895286" />
+        <inertia
+          ixx="0.0583687141379971"
+          ixy="0.00552305687154561"
+          ixz="-0.00736653946693329"
+          iyy="0.125409385508346"
+          iyz="0.00188433720506236"
+          izz="0.155760995160556" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}link_4">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link4.STL" />
+        </geometry>
+        <xacro:material_kuka_orange />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link4.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="0.166030519876032 0.00351269770895513 -0.000101995036007274"
+          rpy="0 0 0" />
+        <mass
+          value="3.65024761849689" />
+        <inertia
+          ixx="0.00917542298020903"
+          ixy="-0.00142087192898842"
+          ixz="3.77390163901273E-05"
+          iyy="0.0307659104375414"
+          iyz="2.35686653555563E-06"
+          izz="0.0341691417151628" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}link_5">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link5.STL" />
+        </geometry>
+        <xacro:material_kuka_orange />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link5.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="0.0193967415674676 5.88454126617677E-05 -4.60295850346348E-06"
+          rpy="0 0 0" />
+        <mass
+          value="0.80108560803615" />
+        <inertia
+          ixx="0.000800318808742113"
+          ixy="-1.20735497925876E-05"
+          ixz="8.1155487021789E-08"
+          iyy="0.00144153628115797"
+          iyz="1.27290952711159E-07"
+          izz="0.00150222111001529" />
+      </inertial>
+    </link>
+
+    <link name="${prefix}link_6">
+      <visual>
+        <origin xyz="0 0 0" rpy="3.1415926539 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link6.STL" />
+        </geometry>
+        <xacro:material_kuka_pedestal />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="3.1415926539 0 0" />
+        <geometry>
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/meshes/lr_link6.STL" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="0.00890626664329569 -3.69659858279192E-12 2.17469549730342E-05"
+          rpy="3.1415926539 0 0" />
+        <mass
+          value="0.0348816655060664" />
+        <inertia
+          ixx="2.95496260538664E-05"
+          ixy="-1.61287487483852E-16"
+          ixz="-1.89500946753945E-09"
+          iyy="1.51607550086133E-05"
+          iyz="-3.58900904059035E-15"
+          izz="1.51561337859033E-05" />
+      </inertial>
+    </link>
+
+    <!-- Following REP199, this frame shall be use to attach EEF or other equipment -->
+    <link name="${prefix}flange"/>
+
+    <joint name="${prefix}joint_a1" type="revolute">
+      <origin
+        xyz="0 0 0.21195"
+        rpy="0 0 0.013412" />
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_1"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-2.96706"
+        upper="2.96706"
+        effort="0"
+        velocity="3.83972" />
+    </joint>
+    
+    <joint name="${prefix}joint_a2" type="revolute">
+      <origin xyz="0.17 -0.051664 0.21305"
+        rpy="0 1.5708 0" />
+      <parent link="${prefix}link_1"/>
+      <child link="${prefix}link_2"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="-3.22886"
+        upper="1.13446"
+        effort="0"
+        velocity="3.66519"/>
+    </joint>
+
+    <joint name="${prefix}joint_a3" type="revolute">
+      <origin xyz="0 0 0.81"
+        rpy="0 -1.5708 0" />
+      <parent link="${prefix}link_2"/>
+      <child link="${prefix}link_3"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="-2.3911"
+        upper="2.84489"
+        effort="0"
+        velocity="4.71239"/>
+    </joint>
+
+    <joint name="${prefix}joint_a4" type="revolute">
+      <origin xyz="0.34178 0.051664 0.02"
+        rpy="-0.0066973 0 0" />
+      <parent link="${prefix}link_3"/>
+      <child link="${prefix}link_4"/>
+      <axis xyz="-1 0 0"/>
+      <limit lower="-3.22886"
+        upper="3.22886"
+        effort="0"
+        velocity="6.6497" />
+    </joint>
+    
+    <joint name="${prefix}joint_a5" type="revolute">
+      <origin xyz="0.31822 0 0"
+        rpy="0 0.064576 0" />
+      <parent link="${prefix}link_4"/>
+      <child link="${prefix}link_5"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="-2.0944"
+        upper="2.0944"
+        effort="0"
+        velocity="5.42797" />
+    </joint>
+
+    <joint name="${prefix}joint_a6" type="revolute">
+      <origin xyz="0.08224 0.001 0"
+        rpy="0 0 0" />
+      <parent link="${prefix}link_5"/>
+      <child link="${prefix}link_6"/>
+      <axis xyz="-1 0 0"/>
+      <limit lower="-6.10865"
+        upper="6.10865"
+        effort="0"
+        velocity="8.23795"/>
+    </joint>
+
+    <joint name="${prefix}joint_a6-flange" type="fixed">
+      <parent link="${prefix}link_6"/>
+      <child link="${prefix}flange"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- ROS base_link to KUKA $ROBROOT coordinate system transform -->
+    <link name="${prefix}base" />
+    <joint name="${prefix}base_link-base" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}base"/>
+    </joint>
+
+    <!-- This frame corresponds to the $TOOL coordinate system in KUKA KRC controllers -->
+    <link name="${prefix}tool0" />
+    <joint name="${prefix}flange-tool0" type="fixed">
+      <parent link="${prefix}flange"/>
+      <child link="${prefix}tool0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+</robot>

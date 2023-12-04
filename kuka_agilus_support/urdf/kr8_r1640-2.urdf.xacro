@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kr8_r1640-2">
+<!-- Import urdf file  -->
+<xacro:include filename="$(find kuka_agilus_support)/urdf/kr8_r1640-2_macro.xacro"/>
+
+<!-- Read parameters from rsi_config  -->
+<!-- <xacro:property name="rsi_config" value="$(find kuka_rsi_hw_interface)/config/rsi_config.yaml" />
+<xacro:property name="rsi_config_dict" value="${xacro.load_yaml(rsi_config)['lower_robot']}"/>
+<xacro:property name="client_ip" value="${rsi_config_dict['client_ip']}" />
+<xacro:property name="client_port" value="${rsi_config_dict['client_port']}" /> -->
+
+
+<!-- Read additional arguments  -->
+<xacro:arg name="use_fake_hardware" default="false" />
+<xacro:arg name="rsi_config_file" default="rsi_config.yaml" />
+<xacro:arg name="namespace" default="" />
+
+<!-- Turn the rsi config file argument into a property, for comparison-->
+<xacro:property name="default_rsi_config_file" value="rsi_config.yaml"/>
+<xacro:property name="current_rsi_config_file" value="$(arg rsi_config_file)"/>
+<!-- Read parameters from rsi_config  -->
+<xacro:property name="rsi_config" value="$(arg rsi_config_file)" />
+
+<xacro:if value="${current_rsi_config_file == default_rsi_config_file}"> 
+    <xacro:property name="rsi_config_dict" value="${xacro.load_yaml(rsi_config)}"/>
+</xacro:if>
+
+<xacro:unless value="${current_rsi_config_file == default_rsi_config_file}">
+    <xacro:property name="rsi_config_dict" value="${xacro.load_yaml(rsi_config)}"/>
+</xacro:unless>
+
+<xacro:property name="client_ip" value="${rsi_config_dict['client_ip']}"/>
+<xacro:property name="client_port" value="${rsi_config_dict['client_port']}" />
+
+<!-- Read additional arguments  -->
+<xacro:arg name="use_fake_hardware" default="false" />
+
+<xacro:kr8_r1640-2_robot prefix="$(arg namespace)"
+                  client_ip="${client_ip}" 
+                  client_port="${client_port}" 
+                  use_fake_hardware="$(arg use_fake_hardware)"/>
+</robot>
