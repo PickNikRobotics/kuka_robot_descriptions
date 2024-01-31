@@ -8,13 +8,13 @@
   <xacro:macro name="kr8_r1640-2_robot" params="prefix client_ip client_port use_fake_hardware">
     <!-- ros2 control instance -->
     <xacro:kuka_agilus_ros2_control
-    name="kr8_r1640-2" 
+    name="kr8_r1640-2"
     prefix="${prefix}"
     client_ip="${client_ip}"
     client_port="${client_port}"
     use_fake_hardware="${use_fake_hardware}" />
 
-    <link name="${prefix}base_link">  
+    <link name="${prefix}base_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -239,7 +239,7 @@
         effort="0"
         velocity="3.83972" />
     </joint>
-    
+
     <joint name="${prefix}joint_a2" type="revolute">
       <origin xyz="0.17 -0.051664 0.21305"
         rpy="0 1.5708 0" />
@@ -275,7 +275,7 @@
         effort="0"
         velocity="6.6497" />
     </joint>
-    
+
     <joint name="${prefix}joint_a5" type="revolute">
       <origin xyz="0.31822 0 0"
         rpy="0 0.064576 0" />
@@ -303,7 +303,7 @@
     <joint name="${prefix}joint_a6-flange" type="fixed">
       <parent link="${prefix}link_6"/>
       <child link="${prefix}flange"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
     </joint>
 
     <!-- ROS base_link to KUKA $ROBROOT coordinate system transform -->
