@@ -46,14 +46,14 @@
 
     <link name="${prefix}link_1">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 -.21195" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_1.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 -0.21195" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_1.STL" />
         </geometry>
@@ -76,14 +76,14 @@
 
     <link name="${prefix}link_2">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_2.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_2.STL" />
         </geometry>
@@ -106,14 +106,14 @@
 
     <link name="${prefix}link_3">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_3.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_3.STL" />
         </geometry>
@@ -136,14 +136,14 @@
 
     <link name="${prefix}link_4">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="-0.3175 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_4.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="-0.3175 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_4.STL" />
         </geometry>
@@ -166,14 +166,14 @@
 
     <link name="${prefix}link_5">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 -0.0015 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_5.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 -0.0015 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_5.STL" />
         </geometry>
@@ -196,14 +196,14 @@
 
     <link name="${prefix}link_6">
       <visual>
-        <origin xyz="0 0 0" rpy="3.1415926539 0 0" />
+        <origin xyz="-0.0175 0 0" rpy="3.1415926539 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_6.STL" />
         </geometry>
         <xacro:material_kuka_pedestal />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="3.1415926539 0 0" />
+        <origin xyz="-0.0175 0 0" rpy="3.1415926539 0 0" />
         <geometry>
           <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_6.STL" />
         </geometry>
@@ -229,8 +229,8 @@
 
     <joint name="${prefix}joint_a1" type="revolute">
       <origin
-        xyz="0 0 0.21195"
-        rpy="0 0 0.013412" />
+        xyz="0 0 0.425"
+        rpy="0 0 0.0" />
       <parent link="${prefix}base_link"/>
       <child link="${prefix}link_1"/>
       <axis xyz="0 0 -1"/>
@@ -241,8 +241,10 @@
     </joint>
 
     <joint name="${prefix}joint_a2" type="revolute">
-      <origin xyz="0.17 -0.051664 0.21305"
-        rpy="0 1.5708 0" />
+      <!-- <origin xyz="0.17 -0.051664 0.21305"
+        rpy="0 1.5708 0" /> -->
+      <origin xyz="0.17 0.0 0.0"
+        rpy="0 1.57079632679 0" />
       <parent link="${prefix}link_1"/>
       <child link="${prefix}link_2"/>
       <axis xyz="0 1 0"/>
@@ -254,7 +256,7 @@
 
     <joint name="${prefix}joint_a3" type="revolute">
       <origin xyz="0 0 0.81"
-        rpy="0 -1.5708 0" />
+        rpy="0 -1.57079632679 0" />
       <parent link="${prefix}link_2"/>
       <child link="${prefix}link_3"/>
       <axis xyz="0 1 0"/>
@@ -265,8 +267,8 @@
     </joint>
 
     <joint name="${prefix}joint_a4" type="revolute">
-      <origin xyz="0.34178 0.051664 0.02"
-        rpy="-0.0066973 0 0" />
+      <origin xyz="0.66 0.0 0.02"
+        rpy="0 0 0" />
       <parent link="${prefix}link_3"/>
       <child link="${prefix}link_4"/>
       <axis xyz="-1 0 0"/>
@@ -277,8 +279,8 @@
     </joint>
 
     <joint name="${prefix}joint_a5" type="revolute">
-      <origin xyz="0.31822 0 0"
-        rpy="0 0.064576 0" />
+      <origin xyz="0.0 0 0"
+        rpy="0 0.0 0" />
       <parent link="${prefix}link_4"/>
       <child link="${prefix}link_5"/>
       <axis xyz="0 1 0"/>
@@ -289,7 +291,7 @@
     </joint>
 
     <joint name="${prefix}joint_a6" type="revolute">
-      <origin xyz="0.08224 0.001 0"
+      <origin xyz="0.1 0.0 0.0"
         rpy="0 0 0" />
       <parent link="${prefix}link_5"/>
       <child link="${prefix}link_6"/>
