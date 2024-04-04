@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kr8_r1640-2">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="kr8_r1640_2">
 <!-- Import urdf file  -->
-<xacro:include filename="$(find kuka_agilus_support)/urdf/kr8_r1640-2_macro.xacro"/>
+<xacro:include filename="$(find kuka_agilus_support)/urdf/kr8_r1640_2_macro.xacro"/>
 
 <!-- Read parameters from rsi_config  -->
 <!-- <xacro:property name="rsi_config" value="$(find kuka_rsi_hw_interface)/config/rsi_config.yaml" />

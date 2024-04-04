@@ -5,10 +5,10 @@
   <xacro:include filename="$(find kuka_agilus_support)/urdf/kr_agilus_ros2_control.xacro" />
   <xacro:include filename="$(find kuka_agilus_support)/urdf/kr_agilus_transmission.xacro" />
 
-  <xacro:macro name="kr8_r1640-2_robot" params="prefix client_ip client_port use_fake_hardware">
+  <xacro:macro name="kr8_r1640_2_robot" params="prefix client_ip client_port use_fake_hardware">
     <!-- ros2 control instance -->
     <xacro:kuka_agilus_ros2_control
-    name="kr8_r1640-2"
+    name="kr8_r1640_2"
     prefix="${prefix}"
     client_ip="${client_ip}"
     client_port="${client_port}"
@@ -18,14 +18,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/base_link.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/base_link.STL" />
         </geometry>
         <xacro:material_kuka_pedestal />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/base_link.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/base_link.stl" />
         </geometry>
       </collision>
       <inertial>
@@ -48,14 +48,14 @@
       <visual>
         <origin xyz="0 0 -.21195" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_1.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/link_1.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
         <origin xyz="0 0 -0.21195" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_1.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/link_1.stl" />
         </geometry>
       </collision>
       <inertial>
@@ -78,14 +78,14 @@
       <visual>
         <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_2.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/link_2.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
         <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_2.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/link_2.stl" />
         </geometry>
       </collision>
       <inertial>
@@ -108,14 +108,14 @@
       <visual>
         <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_3.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/link_3.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
         <origin xyz="0 -0.051664 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_3.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/link_3.stl" />
         </geometry>
       </collision>
       <inertial>
@@ -138,14 +138,14 @@
       <visual>
         <origin xyz="-0.3175 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_4.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/link_4.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
         <origin xyz="-0.3175 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_4.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/link_4.stl" />
         </geometry>
       </collision>
       <inertial>
@@ -168,14 +168,14 @@
       <visual>
         <origin xyz="0 -0.0015 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_5.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/link_5.STL" />
         </geometry>
         <xacro:material_kuka_orange />
       </visual>
       <collision>
         <origin xyz="0 -0.0015 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_5.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/link_5.stl" />
         </geometry>
       </collision>
       <inertial>
@@ -198,14 +198,14 @@
       <visual>
         <origin xyz="-0.0175 0 0" rpy="3.1415926539 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_6.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/visual/link_6.STL" />
         </geometry>
         <xacro:material_kuka_pedestal />
       </visual>
       <collision>
         <origin xyz="-0.0175 0 0" rpy="3.1415926539 0 0" />
         <geometry>
-          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640-2/visual/link_6.STL" />
+          <mesh filename="package://kuka_agilus_support/meshes/kr8_r1640_2/collision/link_6.stl" />
         </geometry>
       </collision>
       <inertial>
