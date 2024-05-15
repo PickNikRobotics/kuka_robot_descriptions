@@ -1,9 +1,9 @@
 moveit_setup_assistant_config:
   urdf:
     package: kuka_agilus_support
-    relative_path: urdf/kr8_r1640-2.urdf.xacro
+    relative_path: urdf/kr8_r1640_2.urdf.xacro
   srdf:
-    relative_path: config/kr8_r1640-2.srdf
+    relative_path: config/kr8_r1640_2.srdf
   package_settings:
     author_name: Joshua Beck
     author_email: jbeck@calvaryrobotics.com

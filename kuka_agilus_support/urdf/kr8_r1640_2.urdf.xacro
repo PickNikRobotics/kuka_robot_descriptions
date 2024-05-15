@@ -41,7 +41,7 @@
 <!-- Read additional arguments  -->
 <!-- <xacro:arg name="use_fake_hardware" default="false" /> -->
 
-<xacro:kr8_r1640-2_robot prefix="$(arg namespace)"
+<xacro:kr8_r1640_2_robot prefix="$(arg namespace)"
                   client_ip="${client_ip}" 
                   client_port="${client_port}" 
                   use_fake_hardware="$(arg use_fake_hardware)"/>
