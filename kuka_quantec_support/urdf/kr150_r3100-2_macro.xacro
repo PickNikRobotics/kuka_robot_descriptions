@@ -266,10 +266,7 @@
 
     <link name="${prefix}flange" />
     <joint name="${prefix}joint_6-flange" type="fixed">
-    <!-- ORIGINAL -->
-      <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-    <!-- After the Fine Tube Validation using LR and UR | 06102024 -->
-      <origin xyz="0 0 0" rpy="-0.0122173 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="${prefix}link_6" />
       <child link="${prefix}flange" />
     </joint>
