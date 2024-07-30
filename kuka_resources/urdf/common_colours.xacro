@@ -10,7 +10,7 @@
 
   <!-- default colors for robots -->
   <!-- RAL 2003: mechanical arm (pastel orange) -->
-  <xacro:property name="colour_kuka_orange"               value="${246/255} ${120/255} ${ 40/255} 1.0" />
+  <xacro:property name="colour_kuka_orange"               value="${246/255} ${120/255} ${ 40/255} 0.5" />
 
   <!-- RAL 9005: robot base (jet black) -->
   <xacro:property name="colour_kuka_black"                value="${ 14/255} ${ 14/255} ${ 16/255} 1.0" />
