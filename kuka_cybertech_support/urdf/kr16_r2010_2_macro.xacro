@@ -1,6 +1,44 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent">
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false">
+    <xacro:if value="${external_axis}">
+      <link name="${prefix}rail_base">
+        <visual>
+          <origin rpy="0 0 0" xyz="-4.6875 0 0" />
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_base.stl" scale="1 1 1" />
+          </geometry>
+          <material name="grey">
+            <color rgba="0.1 0.1 0.1 1.0" />
+          </material>
+        </visual>
+        <collision>
+          <origin rpy="0 0 0" xyz="-4.6875 0 0" />
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_base.stl" scale="1 1 1" />
+          </geometry>
+        </collision>
+      </link>
+      <link name="${prefix}rail_carriage">
+        <visual>
+          <!-- TODO eyeballed this origin, needs to be measured -->
+          <origin rpy="0 0 0" xyz="-0.4975 0 0" />
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1" />
+          </geometry>
+          <material name="light_grey">
+            <color rgba="0.6 0.6 0.6 1.0" />
+          </material>
+        </visual>
+        <collision>
+          <origin rpy="0 0 0" xyz="-0.4975 0 0" />
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage.stl"
+              scale="1 1 1" />
+          </geometry>
+        </collision>
+      </link>
+    </xacro:if>
     <!-- links - main serial chain -->
     <link name="${prefix}base_link">
       <collision>
@@ -100,11 +138,32 @@
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
       </visual>
     </link>
-    <joint name="${prefix}parent-base_link" type="fixed">
-      <parent link="${parent}"/>
-      <child link="${prefix}base_link"/>
-      <xacro:insert_block name="origin"/>
-    </joint>
+    <xacro:if value="${external_axis}">
+      <joint name="${prefix}parent-rail_base" type="fixed">
+        <parent link="${parent}" />
+        <child link="${prefix}rail_base" />
+        <xacro:insert_block name="origin"/>
+      </joint>
+      <joint name="${prefix}linear_rail" type="prismatic">
+        <axis xyz="1 0 0" />
+        <parent link="${prefix}rail_base" />
+        <child link="${prefix}rail_carriage" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <limit acceleration="10.0" effort="1000.0" lower="-3.66" upper="3.66" velocity="0.175" />
+      </joint>
+      <joint name="${prefix}base_link" type="fixed">
+        <parent link="${prefix}rail_carriage"/>
+        <child link="${prefix}base_link"/>
+        <origin xyz="0 0.159 0" rpy="-1.5708 0 0" />
+      </joint>
+    </xacro:if>
+    <xacro:unless value="${external_axis}">
+      <joint name="${prefix}parent-base_link" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${prefix}base_link"/>
+        <xacro:insert_block name="origin"/>
+      </joint>
+    </xacro:unless>
     <joint name="${prefix}joint_1" type="revolute">
       <axis xyz="0.0 0.0 1.0"/>
       <child link="${prefix}link_1"/>
