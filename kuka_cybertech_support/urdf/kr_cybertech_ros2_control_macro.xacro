@@ -31,14 +31,6 @@
           <plugin>gz_ros2_control/GazeboSimSystem</plugin>
         </xacro:if>
       </hardware>
-      <xacro:if value="${external_axis}">
-        <joint name="${prefix}linear_rail">
-          <command_interface name="position"/>
-          <state_interface name="position">
-            <param name="initial_value">0.0</param>
-          </state_interface>
-        </joint>
-      </xacro:if>
       <joint name="${prefix}joint_1">
         <command_interface name="position"/>
         <state_interface name="position">
@@ -75,6 +67,14 @@
           <param name="initial_value">0.0</param>
         </state_interface>
       </joint>
+      <xacro:if value="${external_axis}">
+        <joint name="${prefix}linear_rail">
+          <command_interface name="position"/>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+        </joint>
+      </xacro:if>
       <xacro:if value="${use_gpio}">
         <xacro:include filename="$(find kuka_rsi_driver)/config/gpio_config.xacro"/>
         <xacro:gpio_config/>
