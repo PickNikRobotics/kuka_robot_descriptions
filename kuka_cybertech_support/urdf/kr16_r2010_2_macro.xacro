@@ -149,12 +149,12 @@
         <parent link="${prefix}rail_base" />
         <child link="${prefix}rail_carriage" />
         <origin rpy="0 0 0" xyz="0 0 0" />
-        <limit acceleration="10.0" effort="1000.0" lower="-3.66" upper="3.66" velocity="0.175" />
+        <limit acceleration="1.0" effort="100000.0" lower="-2.0" upper="2.0" velocity="0.175" />
       </joint>
       <joint name="${prefix}base_link" type="fixed">
         <parent link="${prefix}rail_carriage"/>
         <child link="${prefix}base_link"/>
-        <origin xyz="0 0.159 0" rpy="-1.5708 0 0" />
+        <origin xyz="0 0.159 0" rpy="-1.5708 -1.5708 0" />
       </joint>
     </xacro:if>
     <xacro:unless value="${external_axis}">
