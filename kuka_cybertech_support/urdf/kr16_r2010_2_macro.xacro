@@ -149,7 +149,7 @@
         <parent link="${prefix}rail_base" />
         <child link="${prefix}rail_carriage" />
         <origin rpy="0 0 0" xyz="0 0 0" />
-        <limit acceleration="1.0" effort="100000.0" lower="-2.0" upper="2.0" velocity="0.175" />
+        <limit acceleration="0.5" effort="100000.0" lower="-3.0" upper="3.0" velocity="0.175" />
       </joint>
       <joint name="${prefix}base_link" type="fixed">
         <parent link="${prefix}rail_carriage"/>
@@ -174,7 +174,7 @@
     <joint name="${prefix}joint_2" type="revolute">
       <axis xyz="0.0 0.0 1.0"/>
       <child link="${prefix}link_2"/>
-      <limit effort="1633.6259859" lower="-3.2288591161895095E0" upper="1.1344640137963142E0" velocity="${radians(175)}"/>
+      <limit effort="1633.6259859" lower="-3.01" upper="1.1344640137963142E0" velocity="${radians(175)}"/>
       <origin rpy="${pi/2.0} 0.0 -0.0" xyz="0.16 0.0 -0.52"/>
       <parent link="${prefix}link_1"/>
     </joint>
