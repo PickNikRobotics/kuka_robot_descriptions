@@ -21,7 +21,6 @@
       </link>
       <link name="${prefix}rail_carriage">
         <visual>
-          <!-- TODO eyeballed this origin, needs to be measured -->
           <origin rpy="0 0 0" xyz="-0.4975 0 0"/>
           <geometry>
             <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
@@ -173,7 +172,7 @@
     <joint name="${prefix}joint_2" type="revolute">
       <axis xyz="0.0 0.0 1.0"/>
       <child link="${prefix}link_2"/>
-      <limit effort="1633.6259859" lower="-3.01" upper="1.1344640137963142E0" velocity="${radians(175)}"/>
+      <limit effort="1633.6259859" lower="-3.2288591161895095E0" upper="1.1344640137963142E0" velocity="${radians(175)}"/>
       <origin rpy="${pi/2.0} 0.0 -0.0" xyz="0.16 0.0 -0.52"/>
       <parent link="${prefix}link_1"/>
     </joint>
