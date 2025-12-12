@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="kuka_cybertech_ros2_control" params="name driver_version client_ip client_port controller_ip prefix mode use_gpio roundtrip_time verify_robot_model">
+  <xacro:macro name="kuka_cybertech_ros2_control" params="name driver_version client_ip client_port controller_ip prefix mode use_gpio roundtrip_time verify_robot_model external_axis:=false">
     <!-- gazebo -->
     <xacro:if value="${mode == 'gazebo'}">
       <xacro:include filename="$(find kuka_gazebo)/gazebo/kuka_gazebo.xacro"/>
       <xacro:kuka_gazebo controller_config_package="kuka_resources" controller_config_path="config/fake_hardware_config_6_axis.yaml"/>
     </xacro:if>
     <!-- ros2 control -->
-    <ros2_control name="${name}" type="system">
+    <ros2_control name="${name}" type="system" is_async="true">
       <hardware>
         <xacro:if value="${mode == 'mock'}">
           <plugin>kuka_mock_hardware_interface::KukaMockHardwareInterface</plugin>
@@ -25,6 +25,8 @@
           </xacro:if>
           <xacro:if value="${driver_version == 'rsi_only'}">
             <plugin>kuka_rsi_driver::KukaRSIHardwareInterface</plugin>
+            <param name="client_port">${client_port}</param>
+            <param name="controller_ip">${controller_ip}</param>
           </xacro:if>
         </xacro:if>
         <xacro:if value="${mode == 'gazebo'}">
@@ -67,6 +69,14 @@
           <param name="initial_value">0.0</param>
         </state_interface>
       </joint>
+      <xacro:if value="${external_axis}">
+        <joint name="${prefix}linear_rail">
+          <command_interface name="position"/>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+        </joint>
+      </xacro:if>
       <xacro:if value="${use_gpio}">
         <xacro:include filename="$(find kuka_rsi_driver)/config/gpio_config.xacro"/>
         <xacro:gpio_config/>
