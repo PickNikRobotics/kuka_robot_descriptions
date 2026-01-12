@@ -100,7 +100,7 @@
       </xacro:if>
       <xacro:if value="${use_gpio}">
         <xacro:include filename="$(find kuka_rsi_driver)/config/gpio_config.xacro"/>
-        <xacro:gpio_config/>
+        <xacro:gpio_config prefix="${prefix}"/>
       </xacro:if>
       <xacro:unless value="${use_gpio}">
         <gpio name="gpio"/>
