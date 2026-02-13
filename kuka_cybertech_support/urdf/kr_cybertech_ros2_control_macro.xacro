@@ -20,6 +20,8 @@
           <xacro:if value="${driver_version == 'eki_rsi'}">
             <plugin>kuka_rsi_driver::KukaEkiRsiHardwareInterface</plugin>
             <param name="controller_ip">${controller_ip}</param>
+            <param name="client_ip">${client_ip}</param>
+            <param name="client_port">${client_port}</param>
             <param name="name">${name}</param>
             <param name="verify_robot_model">${verify_robot_model}</param>
           </xacro:if>
@@ -38,36 +40,42 @@
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
+        <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_2">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">-1.5708</param>
         </state_interface>
+        <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_3">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">1.5708</param>
         </state_interface>
+        <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_4">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
+        <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_5">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
+        <state_interface name="velocity"/>
       </joint>
       <joint name="${prefix}joint_6">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
+        <state_interface name="velocity"/>
       </joint>
       <xacro:if value="${external_axis}">
         <joint name="${prefix}linear_rail">
@@ -75,6 +83,7 @@
           <state_interface name="position">
             <param name="initial_value">0.0</param>
           </state_interface>
+          <state_interface name="velocity"/>
         </joint>
       </xacro:if>
       <xacro:if value="${use_gpio}">
