@@ -25,8 +25,8 @@
           <geometry>
             <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
           </geometry>
-          <material name="light_grey">
-            <color rgba="0.6 0.6 0.6 1.0"/>
+          <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
           </material>
         </visual>
         <collision>
@@ -50,6 +50,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/base_link.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <link name="${prefix}link_1">
@@ -64,6 +67,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/link_1.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <link name="${prefix}link_2">
@@ -78,6 +84,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/link_2.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <link name="${prefix}link_3">
@@ -92,6 +101,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/link_3.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <link name="${prefix}link_4">
@@ -106,6 +118,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/link_4.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <link name="${prefix}link_4_part_2">
@@ -128,6 +143,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/link_5.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <link name="${prefix}link_6">
@@ -142,6 +160,9 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/link_6.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
+        <material name="orange">
+          <color rgba="0.7 0.18 0.0 1.0"/>
+        </material>
       </visual>
     </link>
     <xacro:if value="${external_axis}">
