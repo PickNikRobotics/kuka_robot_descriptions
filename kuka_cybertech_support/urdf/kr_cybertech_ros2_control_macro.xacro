@@ -20,6 +20,8 @@
           <xacro:if value="${driver_version == 'eki_rsi'}">
             <plugin>kuka_rsi_driver::KukaEkiRsiHardwareInterface</plugin>
             <param name="controller_ip">${controller_ip}</param>
+            <param name="client_ip">${client_ip}</param>
+            <param name="client_port">${client_port}</param>
             <param name="name">${name}</param>
             <param name="verify_robot_model">${verify_robot_model}</param>
           </xacro:if>
