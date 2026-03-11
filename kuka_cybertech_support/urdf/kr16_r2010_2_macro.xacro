@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false">
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false mirrored:=false">
     <xacro:if value="${external_axis}">
       <link name="${prefix}rail_base">
         <visual>
@@ -23,7 +23,12 @@
         <visual>
           <origin rpy="0 0 0" xyz="-0.4975 0 0"/>
           <geometry>
+            <xacro:unless value="${mirrored}">
             <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
+            </xacro:unless>
+            <xacro:if value="${mirrored}">
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage_mirrored.stl" scale="1 1 1"/>
+            </xacro:if>
           </geometry>
           <material name="black">
             <color rgba="0.05 0.05 0.05 1.0"/>
@@ -32,7 +37,12 @@
         <collision>
           <origin rpy="0 0 0" xyz="-0.4975 0 0"/>
           <geometry>
+            <xacro:unless value="${mirrored}">
             <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1 1 1"/>
+            </xacro:unless>
+            <xacro:if value="${mirrored}">
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1 1 1"/>
+            </xacro:if>
           </geometry>
         </collision>
       </link>
