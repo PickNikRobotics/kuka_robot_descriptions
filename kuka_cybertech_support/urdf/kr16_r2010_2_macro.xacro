@@ -1,52 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false mirrored:=false">
-    <xacro:if value="${external_axis}">
-      <link name="${prefix}rail_base">
-        <visual>
-          <origin rpy="0 0 0" xyz="-4.6875 0 0"/>
-          <geometry>
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_base.stl" scale="1 1 1"/>
-          </geometry>
-          <material name="grey">
-            <color rgba="0.1 0.1 0.1 1.0"/>
-          </material>
-        </visual>
-        <collision>
-          <origin rpy="0 0 0" xyz="-4.6875 0 0"/>
-          <geometry>
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_base_convex.stl" scale="1.0 1.1 1.0"/>
-          </geometry>
-        </collision>
-      </link>
-      <link name="${prefix}rail_carriage">
-        <visual>
-          <origin rpy="0 0 0" xyz="-0.4975 0 0"/>
-          <geometry>
-            <xacro:unless value="${mirrored}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
-            </xacro:unless>
-            <xacro:if value="${mirrored}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage_mirrored.stl" scale="1 1 1"/>
-            </xacro:if>
-          </geometry>
-          <material name="black">
-            <color rgba="0.05 0.05 0.05 1.0"/>
-          </material>
-        </visual>
-        <collision>
-          <origin rpy="0 0 0" xyz="-0.4975 0 0"/>
-          <geometry>
-            <xacro:unless value="${mirrored}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1.0 1.1 1.0"/>
-            </xacro:unless>
-            <xacro:if value="${mirrored}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1.0 1.1 1.0"/>
-            </xacro:if>
-          </geometry>
-        </collision>
-      </link>
-    </xacro:if>
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false">
     <!-- links - main serial chain -->
     <link name="${prefix}base_link">
       <collision>
@@ -65,6 +19,114 @@
         </material>
       </visual>
     </link>
+
+    <xacro:if value="${external_axis}">
+      <!-- Rail mesh origin is the center of left-most mounting bracket of the rail -->
+      <link name="${prefix}rail_base">
+        <visual>
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_base.stl" scale="1 1 1"/>
+          </geometry>
+          <material name="grey">
+            <color rgba="0.1 0.1 0.1 1.0"/>
+          </material>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_base_convex.stl" scale="1.0 1.1 1.0"/>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${prefix}parent-rail_base" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${prefix}rail_base"/>
+        <xacro:if value="${is_left}">
+          <origin xyz="0.315 0 0" rpy="3.141592 0 0"/>
+        </xacro:if>
+        <xacro:unless value="${is_left}">
+          <origin xyz="${(-4.288 - 0.850 - 4.870 + 0.315)} 0 0" rpy="3.141592 0 0"/>
+        </xacro:unless>
+      </joint>
+
+      <!-- The hand measured zero position of the "Kuka mounting pin" relative to the left-most point of the rail -->
+      <link name="${prefix}rail_zero"/>
+
+      <joint name="${prefix}rail_base-rail_zero" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${prefix}rail_zero"/>
+        <xacro:insert_block name="origin"/>
+      </joint>
+
+      <!-- Inline with Kuka zero position -->
+      <link name="${prefix}rail_to_carriage_mount"/>
+
+      <joint name="${prefix}linear_rail" type="prismatic">
+        <axis xyz="1 0 0"/>
+        <parent link="${prefix}rail_zero"/>
+        <child link="${prefix}rail_to_carriage_mount"/>
+        <origin xyz="0 0 0" rpy="3.141592 0 0" />
+        <limit acceleration="0.5" effort="100000.0" lower="-4.5" upper="4.5" velocity="0.175"/>
+      </joint>
+
+      <link name="${prefix}rail_carriage_mesh">
+        <visual>
+          <geometry>
+            <xacro:unless value="${is_left}">
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
+            </xacro:unless>
+            <xacro:if value="${is_left}">
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage_mirrored.stl" scale="1 1 1"/>
+            </xacro:if>
+          </geometry>
+          <material name="black">
+            <color rgba="0.05 0.05 0.05 1.0"/>
+          </material>
+        </visual>
+        <collision>
+          <geometry>
+            <xacro:unless value="${is_left}">
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1.0 1.1 1.0"/>
+            </xacro:unless>
+            <xacro:if value="${is_left}">
+            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1.0 1.1 1.0"/>
+            </xacro:if>
+          </geometry>
+        </collision>
+      </link>
+
+      <!-- Origin of the carriage mesh is in an odd location -->
+      <joint name="${prefix}rail_carriage_mesh-rail_carriage" type="fixed">
+        <parent link="${prefix}rail_to_carriage_mount"/>
+        <child link="${prefix}rail_carriage_mesh"/>
+        <xacro:if value="${is_left}">
+          <origin xyz="-0.490 0 0" rpy="0 0 0"/>
+        </xacro:if>
+        <xacro:unless value="${is_left}">
+          <origin xyz="-0.490 0 0" rpy="0 0 0"/>
+        </xacro:unless>
+      </joint>
+
+      <joint name="${prefix}base_link" type="fixed">
+        <parent link="${prefix}rail_to_carriage_mount"/>
+        <child link="${prefix}base_link"/>
+        <xacro:if value="${is_left}">
+          <origin xyz="0 0.159 0" rpy="-1.5708 -1.5708 0"/>
+        </xacro:if>
+        <xacro:unless value="${is_left}">
+          <origin xyz="0 0.159 0" rpy="-1.5708 -1.5708 0"/>
+        </xacro:unless>
+      </joint>
+    </xacro:if>
+
+    <xacro:unless value="${external_axis}">
+      <joint name="${prefix}parent-base_link" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${prefix}base_link"/>
+        <xacro:insert_block name="origin"/>
+      </joint>
+    </xacro:unless>
+
     <link name="${prefix}link_1">
       <collision>
         <geometry>
@@ -175,32 +237,6 @@
         </material>
       </visual>
     </link>
-    <xacro:if value="${external_axis}">
-      <joint name="${prefix}parent-rail_base" type="fixed">
-        <parent link="${parent}"/>
-        <child link="${prefix}rail_base"/>
-        <xacro:insert_block name="origin"/>
-      </joint>
-      <joint name="${prefix}linear_rail" type="prismatic">
-        <axis xyz="1 0 0"/>
-        <parent link="${prefix}rail_base"/>
-        <child link="${prefix}rail_carriage"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <limit acceleration="0.5" effort="100000.0" lower="-4.5" upper="4.5" velocity="0.175"/>
-      </joint>
-      <joint name="${prefix}base_link" type="fixed">
-        <parent link="${prefix}rail_carriage"/>
-        <child link="${prefix}base_link"/>
-        <origin xyz="0 0.159 0" rpy="-1.5708 -1.5708 0"/>
-      </joint>
-    </xacro:if>
-    <xacro:unless value="${external_axis}">
-      <joint name="${prefix}parent-base_link" type="fixed">
-        <parent link="${parent}"/>
-        <child link="${prefix}base_link"/>
-        <xacro:insert_block name="origin"/>
-      </joint>
-    </xacro:unless>
     <joint name="${prefix}joint_1" type="revolute">
       <axis xyz="0.0 0.0 1.0"/>
       <child link="${prefix}link_1"/>
