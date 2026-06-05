@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="kuka_cybertech_ros2_control" params="name driver_version client_ip client_port controller_ip prefix mode use_gpio roundtrip_time verify_robot_model external_axis:=false">
+  <xacro:macro name="kuka_cybertech_ros2_control" params="name driver_version client_ip client_port controller_ip prefix mode gpio_config_file:='' roundtrip_time verify_robot_model external_axis:=false">
     <!-- gazebo -->
     <xacro:if value="${mode == 'gazebo'}">
       <xacro:include filename="$(find kuka_gazebo)/gazebo/kuka_gazebo.xacro"/>
@@ -20,6 +20,8 @@
           <xacro:if value="${driver_version == 'eki_rsi'}">
             <plugin>kuka_rsi_driver::KukaEkiRsiHardwareInterface</plugin>
             <param name="controller_ip">${controller_ip}</param>
+            <param name="client_ip">${client_ip}</param>
+            <param name="client_port">${client_port}</param>
             <param name="name">${name}</param>
             <param name="verify_robot_model">${verify_robot_model}</param>
           </xacro:if>
@@ -38,11 +40,17 @@
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
       <joint name="${prefix}joint_2">
         <command_interface name="position"/>
         <state_interface name="position">
           <param name="initial_value">-1.5708</param>
+        </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
         </state_interface>
       </joint>
       <joint name="${prefix}joint_3">
@@ -50,10 +58,16 @@
         <state_interface name="position">
           <param name="initial_value">1.5708</param>
         </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
       <joint name="${prefix}joint_4">
         <command_interface name="position"/>
         <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
           <param name="initial_value">0.0</param>
         </state_interface>
       </joint>
@@ -62,10 +76,16 @@
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
       <joint name="${prefix}joint_6">
         <command_interface name="position"/>
         <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity">
           <param name="initial_value">0.0</param>
         </state_interface>
       </joint>
@@ -75,13 +95,16 @@
           <state_interface name="position">
             <param name="initial_value">0.0</param>
           </state_interface>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
         </joint>
       </xacro:if>
-      <xacro:if value="${use_gpio}">
-        <xacro:include filename="$(find kuka_rsi_driver)/config/gpio_config.xacro"/>
-        <xacro:gpio_config/>
+      <xacro:if value="${gpio_config_file != ''}">
+        <xacro:include filename="${gpio_config_file}"/>
+        <xacro:gpio_config prefix="${prefix}"/>
       </xacro:if>
-      <xacro:unless value="${use_gpio}">
+      <xacro:unless value="${gpio_config_file != ''}">
         <gpio name="gpio"/>
       </xacro:unless>
     </ros2_control>

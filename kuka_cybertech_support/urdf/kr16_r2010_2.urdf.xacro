@@ -6,7 +6,7 @@
   <!-- Read additional arguments  -->
   <xacro:arg name="driver_version" default="eki_rsi"/>
   <xacro:arg name="mode" default="hardware"/>
-  <xacro:arg name="use_gpio" default="false"/>
+  <xacro:arg name="gpio_config_file" default=""/>
   <xacro:arg name="roundtrip_time" default="0"/>
   <xacro:arg name="client_ip" default="0.0.0.0"/>
   <xacro:arg name="client_port" default="59152"/>
@@ -20,7 +20,7 @@
   <xacro:arg name="pitch" default="0"/>
   <xacro:arg name="yaw" default="0"/>
   <xacro:arg name="external_axis" default="false"/>
-  <xacro:kuka_cybertech_ros2_control name="$(arg prefix)kr16_r2010_2" driver_version="$(arg driver_version)" client_ip="$(arg client_ip)" client_port="$(arg client_port)" controller_ip="$(arg controller_ip)" prefix="$(arg prefix)" mode="$(arg mode)" use_gpio="$(arg use_gpio)" roundtrip_time="$(arg roundtrip_time)" verify_robot_model="$(arg verify_robot_model)"/>
+  <xacro:kuka_cybertech_ros2_control name="$(arg prefix)kr16_r2010_2" driver_version="$(arg driver_version)" client_ip="$(arg client_ip)" client_port="$(arg client_port)" controller_ip="$(arg controller_ip)" prefix="$(arg prefix)" mode="$(arg mode)" gpio_config_file="$(arg gpio_config_file)" roundtrip_time="$(arg roundtrip_time)" verify_robot_model="$(arg verify_robot_model)"/>
   <link name="world"/>
   <xacro:kuka_kr16_r2010_2_robot prefix="$(arg prefix)" package_name="kuka_cybertech_support" parent="world" external_axis="$(arg external_axis)">
     <origin xyz="$(arg x) $(arg y) $(arg z)" rpy="$(arg roll) $(arg pitch) $(arg yaw)"/>
