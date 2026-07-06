@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false">
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:=''">
+    <xacro:property name="rail_mesh_pkg" value="${rail_mesh_package}"/>
+    <xacro:if value="${rail_mesh_pkg == ''}">
+      <xacro:property name="rail_mesh_pkg" value="${package_name}"/>
+    </xacro:if>
     <!-- links - main serial chain -->
     <link name="${prefix}base_link">
       <collision>
@@ -25,7 +29,7 @@
       <link name="${prefix}rail_base">
         <visual>
           <geometry>
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_base.stl" scale="1 1 1"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/visual/rail_base.stl" scale="1 1 1"/>
           </geometry>
           <material name="grey">
             <color rgba="0.1 0.1 0.1 1.0"/>
@@ -33,7 +37,7 @@
         </visual>
         <collision>
           <geometry>
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_base_convex.stl" scale="1.0 1.1 1.0"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_base_convex.stl" scale="1.0 1.1 1.0"/>
           </geometry>
         </collision>
       </link>
@@ -73,10 +77,10 @@
         <visual>
           <geometry>
             <xacro:unless value="${is_left}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/visual/rail_carriage.stl" scale="1 1 1"/>
             </xacro:unless>
             <xacro:if value="${is_left}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/rail_carriage_mirrored.stl" scale="1 1 1"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/visual/rail_carriage_mirrored.stl" scale="1 1 1"/>
             </xacro:if>
           </geometry>
           <material name="black">
@@ -86,10 +90,10 @@
         <collision>
           <geometry>
             <xacro:unless value="${is_left}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1.0 1.1 1.0"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1.0 1.1 1.0"/>
             </xacro:unless>
             <xacro:if value="${is_left}">
-            <mesh filename="package://${package_name}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1.0 1.1 1.0"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1.0 1.1 1.0"/>
             </xacro:if>
           </geometry>
         </collision>
