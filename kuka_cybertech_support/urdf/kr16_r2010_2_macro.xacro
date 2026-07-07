@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:=''">
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:='' rail_base_x_offset:=0">
     <xacro:property name="rail_mesh_pkg" value="${rail_mesh_package}"/>
     <xacro:if value="${rail_mesh_pkg == ''}">
       <xacro:property name="rail_mesh_pkg" value="${package_name}"/>
@@ -46,10 +46,10 @@
         <parent link="${parent}"/>
         <child link="${prefix}rail_base"/>
         <xacro:if value="${is_left}">
-          <origin xyz="0.315 0 0" rpy="3.141592 0 0"/>
+          <origin xyz="${0.315 + rail_base_x_offset} 0 0" rpy="3.141592 0 0"/>
         </xacro:if>
         <xacro:unless value="${is_left}">
-          <origin xyz="${(-4.288 - 0.850 - 4.870 + 0.315)} 0 0" rpy="3.141592 0 0"/>
+          <origin xyz="${(-4.288 - 0.850 - 4.870 + 0.315) + rail_base_x_offset} 0 0" rpy="3.141592 0 0"/>
         </xacro:unless>
       </joint>
 
