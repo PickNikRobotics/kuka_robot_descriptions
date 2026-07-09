@@ -90,10 +90,10 @@
         <collision>
           <geometry>
             <xacro:unless value="${is_left}">
-            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1.0 1.1 1.0"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_carriage_convex.stl" scale="1 1 1"/>
             </xacro:unless>
             <xacro:if value="${is_left}">
-            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1.0 1.1 1.0"/>
+            <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/collision/rail_carriage_convex_mirrored.stl" scale="1 1 1"/>
             </xacro:if>
           </geometry>
         </collision>
