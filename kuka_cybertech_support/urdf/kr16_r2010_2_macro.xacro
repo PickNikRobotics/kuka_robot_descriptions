@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:='' rail_base_x_offset:=0 arm_mount_xyz:='0 0.159 0'">
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:='' rail_base_x_offset:=0 arm_mount_xyz:='0 0.159 0' rail_lower_limit:=-4.5 rail_upper_limit:=4.5">
     <xacro:property name="rail_mesh_pkg" value="${rail_mesh_package}"/>
     <xacro:if value="${rail_mesh_pkg == ''}">
       <xacro:property name="rail_mesh_pkg" value="${package_name}"/>
@@ -70,7 +70,7 @@
         <parent link="${prefix}rail_zero"/>
         <child link="${prefix}rail_to_carriage_mount"/>
         <origin xyz="0 0 0" rpy="3.141592 0 0" />
-        <limit acceleration="0.5" effort="100000.0" lower="-4.5" upper="4.5" velocity="0.175"/>
+        <limit acceleration="0.5" effort="100000.0" lower="${rail_lower_limit}" upper="${rail_upper_limit}" velocity="0.175"/>
       </joint>
 
       <link name="${prefix}rail_carriage_mesh">
