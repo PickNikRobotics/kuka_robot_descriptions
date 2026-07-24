@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:='' rail_base_x_offset:=0 arm_mount_xyz:='0 0.159 0' rail_lower_limit:=-4.5 rail_upper_limit:=4.5">
+  <xacro:macro name="kuka_kr16_r2010_2_robot" params="prefix package_name *origin parent external_axis:=false is_left:=false rail_mesh_package:='' rail_mesh_xyz:='0 0 0' rail_mesh_rpy:='3.141592 0 0' rail_carriage_mesh_xyz:='-0.490 0 0' rail_carriage_mesh_rpy:='0 0 0' carriage_plate_thickness:=0.159 rail_lower_limit:=-4.5 rail_upper_limit:=4.5">
     <xacro:property name="rail_mesh_pkg" value="${rail_mesh_package}"/>
     <xacro:if value="${rail_mesh_pkg == ''}">
       <xacro:property name="rail_mesh_pkg" value="${package_name}"/>
@@ -45,12 +45,7 @@
       <joint name="${prefix}parent-rail_base" type="fixed">
         <parent link="${parent}"/>
         <child link="${prefix}rail_base"/>
-        <xacro:if value="${is_left}">
-          <origin xyz="${0.315 + rail_base_x_offset} 0 0" rpy="3.141592 0 0"/>
-        </xacro:if>
-        <xacro:unless value="${is_left}">
-          <origin xyz="${(-4.288 - 0.850 - 4.870 + 0.315) + rail_base_x_offset} 0 0" rpy="3.141592 0 0"/>
-        </xacro:unless>
+        <origin xyz="${rail_mesh_xyz}" rpy="${rail_mesh_rpy}"/>
       </joint>
 
       <!-- The hand measured zero position of the "Kuka mounting pin" relative to the left-most point of the rail -->
@@ -103,23 +98,13 @@
       <joint name="${prefix}rail_carriage_mesh-rail_carriage" type="fixed">
         <parent link="${prefix}rail_to_carriage_mount"/>
         <child link="${prefix}rail_carriage_mesh"/>
-        <xacro:if value="${is_left}">
-          <origin xyz="-0.490 0 0" rpy="0 0 0"/>
-        </xacro:if>
-        <xacro:unless value="${is_left}">
-          <origin xyz="-0.490 0 0" rpy="0 0 0"/>
-        </xacro:unless>
+        <origin xyz="${rail_carriage_mesh_xyz}" rpy="${rail_carriage_mesh_rpy}"/>
       </joint>
 
       <joint name="${prefix}base_link" type="fixed">
         <parent link="${prefix}rail_to_carriage_mount"/>
         <child link="${prefix}base_link"/>
-        <xacro:if value="${is_left}">
-          <origin xyz="${arm_mount_xyz}" rpy="-1.5708 -1.5708 0"/>
-        </xacro:if>
-        <xacro:unless value="${is_left}">
-          <origin xyz="${arm_mount_xyz}" rpy="-1.5708 -1.5708 0"/>
-        </xacro:unless>
+        <origin xyz="0 ${carriage_plate_thickness} 0" rpy="-1.5708 -1.5708 0"/>
       </joint>
     </xacro:if>
 
