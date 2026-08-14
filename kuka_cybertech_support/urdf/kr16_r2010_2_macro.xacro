@@ -18,8 +18,8 @@
           <mesh filename="package://${package_name}/meshes/kr16_r2010_2/visual/base_link.stl"/>
         </geometry>
         <origin rpy="-0.0 0.0 -0.0" xyz="0.0 0.0 0.0"/>
-        <material name="orange">
-          <color rgba="0.7 0.18 0.0 1.0"/>
+        <material name="black">
+          <color rgba="0.05 0.05 0.05 1.0"/>
         </material>
       </visual>
     </link>
@@ -31,8 +31,8 @@
           <geometry>
             <mesh filename="package://${rail_mesh_pkg}/meshes/kr16_r2010_2/visual/rail_base.stl" scale="1 1 1"/>
           </geometry>
-          <material name="grey">
-            <color rgba="0.1 0.1 0.1 1.0"/>
+          <material name="rail_white">
+            <color rgba="0.62 0.62 0.60 1.0"/>
           </material>
         </visual>
         <collision>
